@@ -19,6 +19,15 @@ app.get('/projects', async (req, res) => {    //End point
     }
 });
 
+app.get('/projects', async (req, res) => {    //End point
+    try {
+        const projects = await Project.find();
+        res.json(projects);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 app.listen(port, () => {       //Our Nodejs project runs because of this
     console.log(`Server running at http://localhost:${port}/`);
 });
